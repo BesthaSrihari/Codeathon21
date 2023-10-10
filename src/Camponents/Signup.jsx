@@ -80,7 +80,7 @@ function Signup() {
                     <div className='button'>
                         <input type='submit' value="Submit" className="btn btn-outline-primary" />
                     </div>
-                    <p className="para">Already have an account <Link to="/login">Login</Link> here</p>
+                    <p className="para">Already have an account <Link to="/">Login</Link> here</p>
                 </div>
             </form>
         </div>

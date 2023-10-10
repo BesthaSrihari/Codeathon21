@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Chart } from "chart.js/auto";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
-  const [username, setUsername] = useState("octocat");
+  const navigate=useNavigate()
+  const [username, setUsername] = useState('example');
   const [user, setUser] = useState({});
   const [repositories, setRepositories] = useState([]);
   const [followers, setFollowers] = useState(0);
@@ -96,12 +98,17 @@ function Dashboard() {
   const handleRepoClick = (repo) => {
     setSelectedRepo(repo);
   };
+  const handleLogout=()=>{
+    navigate('/')
+  }
 
   return (
     <div className="dashboard">
       <header className="header">
         <h1 className="dashboard-title">GitHub Dashboard</h1>
+        <div className='buttonsignout'><button className="btn btn-outline-success" style={{marginLeft:'1000px'}} onClick={handleLogout}>Logout</button></div>
       </header>
+
 
       <main className="content">
         <div className="search-container">
@@ -125,7 +132,7 @@ function Dashboard() {
         </aside>
 
         {/* Project Stats and Repositories by Year Charts */}
-        <div style={{display:'flex'}}>
+        <div style={{display:'flex', justifyContent:'space-around'}}>
         <section className="chart">
           <h2 className="section-title">Project Stats</h2>
           <div id="chartContainer" style={{ width: "200px", height: "200px" }}>
