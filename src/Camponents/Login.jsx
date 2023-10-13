@@ -7,7 +7,8 @@ function Login() {
     const [login, setLogin] = useState({
         email: '',
         password: ''
-    })
+    });
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -41,9 +42,22 @@ function Login() {
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Password</label>
                         <div className="col-sm-10">
-                            <input type="password" name='password' value={login.password} required className="form-control password" placeholder="Password" onChange={(e) => {
-                                setLogin({ ...login, [e.target.name]: e.target.value });
-                            }} />
+                            <div className="password-input-container">
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    name='password'
+                                    value={login.password}
+                                    required
+                                    className="form-control password"
+                                    placeholder="Password"
+                                    onChange={(e) => {
+                                        setLogin({ ...login, [e.target.name]: e.target.value });
+                                    }}
+                                />
+                                <span className="eye-icon" onClick={() => setShowPassword(!showPassword)}>
+                                    {showPassword ? "👁" : "👁‍🗨"}
+                                </span>
+                            </div>
                         </div>
                         <br /><br />
                     </div>

@@ -11,6 +11,8 @@ function Signup() {
         confirmPassword: "",
     });
     const [passwordError, setPasswordError] = useState('');
+    const [showPassword, setShowPassword] = useState(false); // For password field
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false); // For confirm password field
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -61,18 +63,28 @@ function Signup() {
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label label-name">Password</label>
                         <div className="col-sm-10">
-                            <input type="password" name="password" value={login.password} required className="form-control password" placeholder="Password" onChange={(e) => {
-                                setLogin({ ...login, [e.target.name]: e.target.value });
-                            }} />
+                            <div className="password-input-container">
+                                <input type={showPassword ? "text" : "password"} name="password" value={login.password} required className="form-control password" placeholder="Password" onChange={(e) => {
+                                    setLogin({ ...login, [e.target.name]: e.target.value });
+                                }} />
+                                <span className="eye-icon" onClick={() => setShowPassword(!showPassword)}>
+                                    {showPassword ? "👁" : "👁‍🗨"}
+                                </span>
+                            </div>
                         </div>
                         <br /><br />
                     </div>
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label label-name">Confirm Password</label>
                         <div className="col-sm-10">
-                            <input type="password" name="confirmPassword" value={login.confirmPassword} required className="form-control password" placeholder="Confirm Password" onChange={(e) => {
-                                setLogin({ ...login, [e.target.name]: e.target.value });
-                            }} />
+                            <div className="password-input-container">
+                                <input type={showConfirmPassword ? "text" : "password"} name="confirmPassword" value={login.confirmPassword} required className="form-control password" placeholder="Confirm Password" onChange={(e) => {
+                                    setLogin({ ...login, [e.target.name]: e.target.value });
+                                }} />
+                                <span className="eye-icon" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                                    {showConfirmPassword ? "👁" : "👁‍🗨"}
+                                </span>
+                            </div>
                             <br/><br/>
                             <p className="error"><center>{passwordError}</center></p>
                         </div>
